@@ -1,11 +1,14 @@
 {
   "name": "api-mashup",
   "version": "1.0.0",
-  "description": "API MashupThe API mashup provides users with visual and interactive way of exploring nearby places. The application detects locations of the web visitors and displays some basic information, including an interactive map and weather information in the area. Then user can discover the nearby businesses and services using some provided buttons labelled with place types/categories. However, other place types/categories still can be searched via a search box.",
+  "description": "API MashupThe API mashup provides users with visual and interactive way of exploring nearby places.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+  },
+  "dependencies" : {
+    "express": "~4.13.1"
   },
   "repository": {
     "type": "git",
