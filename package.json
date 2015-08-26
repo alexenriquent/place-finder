@@ -1,7 +1,7 @@
 {
   "name": "api-mashup",
   "version": "1.0.0",
-  "description": "API MashupThe API mashup provides users with visual and interactive way of exploring nearby places.",
+  "description": "The API mashup provides users with visual and interactive way of exploring nearby places.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
