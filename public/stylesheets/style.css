@@ -8,16 +8,30 @@ body {
 	height: 100%;
 }
 
+p {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+}
+
 #navbar {
 	background-color: #000000;
 }
 
 #app-name {
 	color: #BDBDBD;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
 }
 
 #nav-menu li a {
 	color: #BDBDBD;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
 }
 
 .centre-alignment {
@@ -44,6 +58,22 @@ body {
 	-moz-background-size: cover;
 	-webkit-background-size: cover;
 }
+
+#city-name {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+}
+
+#temperature {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+}
+
+#weather {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+}
+
 
 #about {
 	background-color: #FFFFFF;
@@ -77,6 +107,7 @@ body {
 	background-color: #000000;
 	color: #BDBDBD;
 	white-space: normal;
+	border-width: 0.5px;
 	border-color: #BDBDBD;
 	height: 120px;
 	border-radius: 0px;
@@ -86,6 +117,11 @@ body {
 	color: #000000;
 	background-color: #FFFFFF;
 	border-color: #FFFFFF;
+}
+
+.btn span {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
 }
 
 #map-canvas {
