@@ -65,6 +65,7 @@ function getWeather(latitude, longitude) {
     		currentWeatherData.minTempValue + currentWeatherData.unit;
     		currentWeatherData.maxTemp.innerHTML = 'Max: ' +
     		currentWeatherData.maxTempValue + currentWeatherData.unit;
+
     		weatherDescription = response.weather[0].main;
     		getBackground(latitude, longitude, weatherDescription);
     	}, false);
@@ -87,13 +88,9 @@ function kelvinToCelsius(kelvin) {
 function getBackground(latitude, longitude, keyword) {
 	var script = document.createElement('script');
 
-	// script.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
- //                + "&api_key=34b0b3186145bc89472de08424c099f7&lat=" + latitude + "&lon=" 
- //                + longitude + "&accuracy=1&tags=" + keyword + "&sort=relevance&extras=url_l&format=json";
-
-    script.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
+	script.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
                 + "&api_key=34b0b3186145bc89472de08424c099f7&lat=" + latitude + "&lon=" 
-                + longitude + "&accuracy=1&sort=relevance&extras=url_l&format=json";
+                + longitude + "&accuracy=1&tags=" + keyword + "&sort=relevance&extras=url_l&format=json";
 
     document.getElementsByTagName('body')[0].appendChild(script);
 }
