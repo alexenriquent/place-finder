@@ -1,0 +1,46 @@
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+}
+
+#navbar {
+	background-color: #000000;
+}
+
+#app-name {
+	color: #BDBDBD;
+}
+
+#nav-menu li a {
+	color: #BDBDBD;
+}
+
+.centre-alignment {
+	text-align: center;
+	vertical-align: middle;
+	display: table-cell;
+}
+
+.centre-alignment h1 {
+	font-size: 3.5em;
+}
+
+.centre-alignment p {
+	font-size: 1.2em;
+}
+
+#header {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	display: table;
+	background-size: cover;
+	/*-o-background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;*/
+}
