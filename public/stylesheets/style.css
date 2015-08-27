@@ -40,7 +40,20 @@ body {
 	position: relative;
 	display: table;
 	background-size: cover;
-	/*-o-background-size: cover;
-	-moz-background-size: cover;
-	-webkit-background-size: cover;*/
+}
+
+#about {
+	background-color: #000000;
+}
+
+#about-content h3, p {
+	color: #BDBDBD;
+}
+
+#about-content p {
+	margin: 0px 50px 0px 50px;
+}
+
+.text-padding {
+	padding: 50px 0;
 }
