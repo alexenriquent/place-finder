@@ -40,14 +40,17 @@ body {
 	position: relative;
 	display: table;
 	background-size: cover;
+	-o-background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
 }
 
 #about {
-	background-color: #000000;
+	background-color: #FFFFFF;
 }
 
-#about-content h3, p {
-	color: #BDBDBD;
+#about-content h3 {
+	color: #000000;
 }
 
 #about-content p {
@@ -57,3 +60,45 @@ body {
 .text-padding {
 	padding: 50px 0;
 }
+
+#places {
+	background-color: #000000;
+}
+
+#places-container h3, hr {
+	color: #BDBDBD;
+}
+
+#places-description {
+	color: #BDBDBD;
+}
+
+.btn-group-fill-height .btn {
+	background-color: #000000;
+	color: #BDBDBD;
+	white-space: normal;
+	border-color: #BDBDBD;
+	height: 120px;
+	border-radius: 0px;
+}
+
+.btn-group-fill-height .btn:hover {
+	color: #000000;
+	background-color: #FFFFFF;
+	border-color: #FFFFFF;
+}
+
+#map-canvas {
+	height: 500px;
+}
+
+#social-media {
+	height: 45px;
+}
+
+footer {
+	height: 80px;
+	color: #BDBDBD;
+	background-color: #000000;
+}
+

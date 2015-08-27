@@ -7,8 +7,8 @@
 	<meta name='keywords' content='API, mashup'/>
 	<title>API Mashup</title>
 	<!-- CSS Stylesheets -->
-	<link rel='stylesheet' type='text/css' href='/stylesheets/style.css'/>
 	<link rel='stylesheet' type='text/css' href='/stylesheets/bootstrap.min.css'/>
+	<link rel='stylesheet' type='text/css' href='/stylesheets/style.css'/>
 </head>
 <body>
 	<!-- Navigation bar -->
@@ -16,22 +16,21 @@
 		<div class='container-fluid'>
 			<div class='navbar-header'>
 				<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#navbar-collapse-main'>
-					<span class='sr-only'>Toggle navigation</span> <!-- Screen read only -->
 					<!-- Button decoration -->
 					<span class='icon-bar'></span>
 					<span class='icon-bar'></span>
 					<span class='icon-bar'></span>
 				</button>
 				<!-- Application name -->
-				<a id='app-name' class='navbar-brand' href='#'>API Mashup</a>
+				<a id='app-name' class='navbar-brand' href='#header'>API Mashup</a>
 			</div> <!-- navbar-header -->
 			<div class='collapse navbar-collapse' id='navbar-collapse-main'>
 				<!-- Navigation menu -->
 				<ul id='nav-menu' class='nav navbar-nav navbar-right'>
 					<li><a href='#header'>Home</a></li>
 					<li><a href='#about'>About</a></li>
+					<li><a href='#places'>Places</a></li>
 					<li><a href='#map'>Map</a></li>
-					<li><a href='#services'>Services</a></li>
 				</ul>
 			</div> <!-- navbar-collapse -->
 		</div> <!-- container-fluid -->
@@ -60,6 +59,63 @@
 			</div> <!-- row -->
 		</div> <!-- container -->
 	</div> <!-- About -->
+
+	<!-- Labelled buttons - Places -->
+	<div id='places' class='text-padding'>
+		<div id='places-container' class='container'>
+			<h3 class='text-center'>Places</h3>
+			<p id='places-description' class='text-center'>This API mashup brings you an easy way to find nearby business and services.</p>
+			<br/> <!-- line break -->
+			<!-- <hr/> horizontal line -->
+			<div class='btn-toolbar' role='toolbar'>
+				<div class='btn-group btn-group-lg btn-group-justified btn-group-fill-height'>
+					<a href='#' class='btn btn-default' role='button'>
+						<span>Button<span>
+					</a>
+					<a href='#' class='btn btn-default' role='button'>
+						<span>Button<span>
+					</a>
+					<a href='#' class='btn btn-default' role='button'>
+						<span>Button<span>
+					</a>
+					<a href='#' class='btn btn-default' role='button'>
+						<span>Button<span>
+					</a>
+					<a href='#' class='btn btn-default' role='button'>
+						<span>Button<span>
+					</a>
+				</div> <!-- btn-group -->
+				<div class='btn-group btn-group-lg btn-group-justified btn-group-fill-height'>
+					<a href='#' class='btn btn-default' role='button'>
+						<span>Button<span>
+					</a>
+					<a href='#' class='btn btn-default' role='button'>
+						<span>Button<span>
+					</a>
+					<a href='#' class='btn btn-default' role='button'>
+						<span>Button<span>
+					</a>
+					<a href='#' class='btn btn-default' role='button'>
+						<span>Button<span>
+					</a>
+					<a href='#' class='btn btn-default' role='button'>
+						<span>Button<span>
+					</a>
+				</div> <!-- btn-group -->
+			</div> <!-- btn-toolbar -->
+		</div> <!-- container -->
+	</div> <!-- Places -->
+
+	<!-- Map -->
+	<div id='map-canvas'></div> 
+
+	<!-- Footer -->
+	<footer>
+		<div class='container'>
+			<div id='social-media'>	</div>
+			<p class='text-center'>Copyright &copy; Alex 2015 </p>
+		</div> <!-- container -->
+	</footer>
 
 	<!-- JavaScripts -->
 	<script type='text/javascript' src='/javascripts/script.js'></script>
