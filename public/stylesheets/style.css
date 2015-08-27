@@ -9,6 +9,7 @@ body {
 }
 
 p {
+	font-size: 15px;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
 }
@@ -20,6 +21,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #navbar {
 	background-color: #000000;
+	border-width: 0px;
 }
 
 #app-name {
@@ -32,6 +34,12 @@ h1, h2, h3, h4, h5, h6 {
 	color: #BDBDBD;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
+}
+
+#nav-menu li a:hover {
+	color: #000000;
+	background-color: #FFFFFF;
+	border-color: #FFFFFF;
 }
 
 .centre-alignment {
@@ -49,6 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header {
+	background: url(/images/default-header-1.jpg);
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -60,20 +69,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #city-name {
+	color: #FFFFFF;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
+	text-shadow: 0 0 3px #000000;
 }
 
 #temperature {
+	color: #FFFFFF;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
+	text-shadow: 0 0 3px #000000;
 }
 
-#weather {
+#weather-description {
+	color: #FFFFFF;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
+	text-shadow: 0 0 3px #000000;
 }
-
 
 #about {
 	background-color: #FFFFFF;
@@ -125,15 +139,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #map-canvas {
+	background: url(/images/default-header-1.jpg);
 	height: 500px;
 }
 
 #social-media {
-	height: 45px;
+	height: 30px;
 }
 
 footer {
-	height: 80px;
+	height: 65px;
 	color: #BDBDBD;
 	background-color: #000000;
 }
