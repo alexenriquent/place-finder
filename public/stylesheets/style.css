@@ -144,7 +144,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #social-media {
-	height: 30px;
+	height: 21px;
+}
+
+#api-endpoints a {
+	color: #FFFFFF;
 }
 
 footer {
@@ -152,4 +156,5 @@ footer {
 	color: #BDBDBD;
 	background-color: #000000;
 }
+
 
