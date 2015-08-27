@@ -89,6 +89,20 @@ h1, h2, h3, h4, h5, h6 {
 	text-shadow: 0 0 3px #000000;
 }
 
+#min-temp {
+	color: #FFFFFF;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	text-shadow: 0 0 3px #000000;
+}
+
+#max-temp {
+	color: #FFFFFF;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	text-shadow: 0 0 3px #000000;
+}
+
 #about {
 	background-color: #FFFFFF;
 }

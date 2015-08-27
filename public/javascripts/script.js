@@ -1,8 +1,12 @@
 var currentWeatherData = {
 	city: document.getElementById('city-name'),
 	weather: document.getElementById('weather-description'),
-	temperature: document.getElementById('temperature'),
-	tempValue: 0,
+	currentTemp: document.getElementById('temperature'),
+	minTemp: document.getElementById('min-temp'),
+	maxTemp: document.getElementById('max-temp'),
+	currentTempValue: 0,
+	minTempValue: 0,
+	maxTempValue: 0,
 	unit: '°C'
 };
 
@@ -51,10 +55,16 @@ function getWeather(latitude, longitude) {
     	xmlhttp.addEventListener('load', function() {
     		var response = JSON.parse(xmlhttp.responseText);
 
-    		currentWeatherData.tempValue = response.main.temp - 273.15;
-    		currentWeatherData.temperature.innerHTML = 
-    		currentWeatherData.tempValue.toFixed(2) + currentWeatherData.unit;
+    		currentWeatherData.currentTempValue = kelvinToCelsius(response.main.temp);
+    		currentWeatherData.minTempValue = kelvinToCelsius(response.main.temp_min);
+    		currentWeatherData.maxTempValue = kelvinToCelsius(response.main.temp_max);
+    		currentWeatherData.currentTemp.innerHTML = 
+    		currentWeatherData.currentTempValue + currentWeatherData.unit;
     		currentWeatherData.weather.innerHTML = response.weather[0].description;
+    		currentWeatherData.minTemp.innerHTML = 'Min: ' +
+    		currentWeatherData.minTempValue + currentWeatherData.unit;
+    		currentWeatherData.maxTemp.innerHTML = 'Max: ' +
+    		currentWeatherData.maxTempValue + currentWeatherData.unit;
     		weatherDescription = response.weather[0].main;
     		getBackground(latitude, longitude, weatherDescription);
     	}, false);
@@ -70,12 +80,20 @@ function getWeather(latitude, longitude) {
     }
 }
 
+function kelvinToCelsius(kelvin) {
+	return (kelvin - 273.15).toFixed(2);
+}
+
 function getBackground(latitude, longitude, keyword) {
 	var script = document.createElement('script');
 
-	script.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
+	// script.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
+ //                + "&api_key=34b0b3186145bc89472de08424c099f7&lat=" + latitude + "&lon=" 
+ //                + longitude + "&accuracy=1&tags=" + keyword + "&sort=relevance&extras=url_l&format=json";
+
+    script.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
                 + "&api_key=34b0b3186145bc89472de08424c099f7&lat=" + latitude + "&lon=" 
-                + longitude + "&accuracy=1&tags=" + keyword + "&sort=relevance&extras=url_l&format=json";
+                + longitude + "&accuracy=1&sort=relevance&extras=url_l&format=json";
 
     document.getElementsByTagName('body')[0].appendChild(script);
 }
