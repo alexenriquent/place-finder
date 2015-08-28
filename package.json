@@ -8,7 +8,8 @@
     "start": "node server.js"
   },
   "dependencies" : {
-    "express": "~4.13.1"
+    "express": "~4.13.1",
+    "ejs": "~2.3.3"
   },
   "repository": {
     "type": "git",
