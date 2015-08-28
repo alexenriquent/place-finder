@@ -1,10 +1,9 @@
 var map;
 var markers = [];
 var infowindow;
+var pos = {lat: 0, long: 0};
 
 function initMap() {
-	var pos = {lat: 0, long: 0};
-
 	if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
         pos.lat = position.coords.latitude,
@@ -14,9 +13,8 @@ function initMap() {
             zoom: 16
         });
         infowindow = new google.maps.InfoWindow();
-        var radius = 1000;
 		var type = '';
-		searchNearby(pos, radius, type);
+		searchNearby(type);
     }, function() {
         handleLocationError(true, infowindow, map.getCenter());
     });
@@ -25,11 +23,11 @@ function initMap() {
   }
 }
 
-function searchNearby(position, radius, type) {
+function searchNearby(type) {
 	var service = new google.maps.places.PlacesService(map);
 	service.nearbySearch({
-		location: position,
-		radius: radius,
+		location: pos,
+		radius: 1000,
 		types: [type]
 	}, callback);
 }
@@ -60,3 +58,19 @@ function createMarker(place) {
 
 	markers.push(marker);
 }
+
+window.onload = function() {
+	var buttons = [];
+	buttons = document.getElementsByClassName('btn');
+
+	for (var i = 0; i < 10; i++) {
+		buttonSearch(buttons[i]);
+	}
+}
+
+function buttonSearch(button) {
+	button.onclick = function() {
+		searchNearby(button.innerHTML.toLowerCase());
+	};
+}
+
