@@ -42,6 +42,10 @@ h1, h2, h3, h4, h5, h6 {
 	border-color: #FFFFFF;
 }
 
+#toggle-button {
+	border-color: #BDBDBD;
+}
+
 .centre-alignment {
 	text-align: center;
 	vertical-align: middle;
@@ -123,6 +127,10 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: #000000;
 }
 
+#places-container {
+	width: 80%;
+}
+
 #places-container h3, hr {
 	color: #BDBDBD;
 }
@@ -135,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: #000000;
 	color: #BDBDBD;
 	white-space: normal;
-	border-width: 0.5px;
+	border-width: 0px;
 	border-color: #BDBDBD;
 	height: 120px;
 	border-radius: 0px;
@@ -147,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
 	border-color: #FFFFFF;
 }
 
-.btn a {
+.btn span {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 300;
 }

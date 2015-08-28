@@ -60,17 +60,19 @@ function createMarker(place) {
 }
 
 window.onload = function() {
+	var types = ['restaurant', 'cafe', 'bar', 'night_club', 
+				'meal_delivery', 'meal_takeaway', 'bakery', 'liquor_store'];
 	var buttons = [];
 	buttons = document.getElementsByClassName('btn');
 
 	for (var i = 0; i < 10; i++) {
-		buttonSearch(buttons[i]);
+		buttonSearch(buttons[i], types[i]);
 	}
 }
 
-function buttonSearch(button) {
+function buttonSearch(button, type) {
 	button.onclick = function() {
-		searchNearby(button.innerHTML.toLowerCase());
+		searchNearby(type);
 	};
 }
 
