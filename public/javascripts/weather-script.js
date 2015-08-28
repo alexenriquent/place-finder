@@ -45,10 +45,10 @@ function getGeolocation() {
 }
 
 function getWeather(latitude, longitude) {
+	var key = '5e2107b0ce1ca798d76e32f41dcc81fe';
 	var weatherDescription;
 	var url = "http://api.openweathermap.org/data/2.5/weather?lat='" 
-        + latitude + "'&lon='" + longitude 
-        + "'&APPID=5e2107b0ce1ca798d76e32f41dcc81fe";
+        + latitude + "'&lon='" + longitude + "'&APPID=" + key;
 
     if (window.XMLHttpRequest) {
     	xmlhttp = new XMLHttpRequest();
@@ -86,11 +86,12 @@ function kelvinToCelsius(kelvin) {
 }
 
 function getBackground(latitude, longitude, keyword) {
+	var key = '34b0b3186145bc89472de08424c099f7';
 	var script = document.createElement('script');
 
 	script.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
-                + "&api_key=34b0b3186145bc89472de08424c099f7&lat=" + latitude + "&lon=" 
-                + longitude + "&accuracy=1&tags=" + keyword + "&sort=relevance&extras=url_l&format=json";
+                + "&api_key=" + key + "&lat=" + latitude + "&lon=" + longitude 
+                + "&accuracy=1&tags=" + keyword + "&sort=relevance&extras=url_l&format=json";
 
     document.getElementsByTagName('body')[0].appendChild(script);
 }
@@ -110,4 +111,6 @@ function jsonFlickrApi(response) {
     }
 }
 
-getGeolocationAndWeather();
+$(document).ready(function() {
+	getGeolocationAndWeather();
+});
