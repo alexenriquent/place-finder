@@ -160,6 +160,32 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 300;
 }
 
+#places-input {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	background-color: #FFFFFF;
+	margin-left: 15px;
+	padding: 0 10px 0 12px;
+	text-overflow: ellipsis;
+	width: 250px;
+}
+
+#places-input:focus {
+	border-width: 1px;
+	border-color: #BDBDBD;
+}
+
+.controls {
+	margin-top: 10px;
+	border: 1px solid transparent;
+	border-radius: 2px 0 0 2px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	height: 32px;
+	outline: none;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
 #map-canvas {
 	background: url(/images/default-header-1.jpg);
 	height: 500px;
