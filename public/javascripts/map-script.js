@@ -134,17 +134,61 @@ function getPlaceInfo(latitude, longitude, name) {
 			var response = JSON.parse(xmlhttp.responseText);
 			var placeName = name.split(' ')[0].toLowerCase();
 			var placeID;
-			var content;
 
 			for (var i = 0; i < response.response.venues.length; i++) {
 				if (response.response.venues[i].name.split(' ')[0].toLowerCase() == placeName) {
-					content = response.response.venues[i].name;
 					placeID = response.response.venues[i].id;
-					content += '<br/>' + placeID;
+					getPlaceDetails(placeID);
 					break;
 				} else {
-					content = name;
+					infowindow.setContent('<strong>' + name + '</strong>');
 				}
+			}
+		}, false);
+
+		xmlhttp.addEventListener('error', function(err) {
+			alert('Unable to complete the request');
+		}, false);
+
+		xmlhttp.open('GET', url, true);
+		xmlhttp.send();
+	} else {
+		alert('Unable to fetch data from Foursquare');
+	}
+}
+
+function getPlaceDetails(placeID) {
+	var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
+	var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
+	var url = 'https://api.foursquare.com/v2/venues/' + placeID + '?client_id=' 
+			+ id + '&client_secret=' + secret + '&v=20150829';
+
+	if (window.XMLHttpRequest) {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.addEventListener('load', function() {
+			var response = JSON.parse(xmlhttp.responseText);
+			var content = '';
+
+			var name = response.response.venue.name;
+			var phoneNumber = response.response.venue.contact.phone;
+			var address = response.response.venue.location.formattedAddress[0];
+			var website = response.response.venue.url;
+			var foursquare = response.response.venue.canonicalUrl;
+
+			if (dataAvailable(name)) {
+				content += '<strong>' + name + '</strong>';
+			}
+			if (dataAvailable(phoneNumber)) {
+				content += '<br/>Phone number: ' + phoneNumber;
+			}
+			if (dataAvailable(address)) {
+				content += '<br/>Address: ' + address;
+			}
+			if (dataAvailable(website)) {
+				content += '<br/>Website: <a href="' + website + '">' + website + '</a>';
+			}
+			if (dataAvailable(foursquare)) {
+				content += '<br/>Foursquare: <a href="' + foursquare + '">View on Foursquare</a>';
 			}
 
 			infowindow.setContent(content);
@@ -157,10 +201,15 @@ function getPlaceInfo(latitude, longitude, name) {
 		xmlhttp.open('GET', url, true);
 		xmlhttp.send();
 	} else {
-		alert('Unable to fetch data');
+		alert('Unable to fetch data from Foursquare');
 	}
-	
+
 }
 
-
+function dataAvailable(data) {
+	if (data != null) {
+		return true;
+	}
+	return false;
+}
 
