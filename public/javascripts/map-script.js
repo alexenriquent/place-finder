@@ -53,8 +53,12 @@ function createMarker(place) {
 		position: place.geometry.location
 	});
 
+	var lat = place.geometry.location.lat();
+	var lng = place.geometry.location.lng();
+
 	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent(place.name);
+		getPlaceInfo(lat, lng, place.name);
+		// infowindow.setContent(place.name);
 		infowindow.open(map, this);
 	});
 
@@ -116,4 +120,47 @@ window.onload = function() {
 		buttonSearch(buttons[i], types[i]);
 	}
 }
+
+function getPlaceInfo(latitude, longitude, name) {
+	var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
+	var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
+	var url = 'https://api.foursquare.com/v2/venues/search?client_id=' 
+			+ id + '&client_secret=' + secret + '&v=20150829&ll=' 
+			+ latitude + ',' + longitude;
+
+	if (window.XMLHttpRequest) {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.addEventListener('load', function() {
+			var response = JSON.parse(xmlhttp.responseText);
+			var placeName = name.split(' ')[0].toLowerCase();
+			var placeID;
+			var content;
+
+			for (var i = 0; i < response.response.venues.length; i++) {
+				if (response.response.venues[i].name.split(' ')[0].toLowerCase() == placeName) {
+					content = response.response.venues[i].name;
+					placeID = response.response.venues[i].id;
+					content += '<br/>' + placeID;
+					break;
+				} else {
+					content = name;
+				}
+			}
+
+			infowindow.setContent(content);
+		}, false);
+
+		xmlhttp.addEventListener('error', function(err) {
+			alert('Unable to complete the request');
+		}, false);
+
+		xmlhttp.open('GET', url, true);
+		xmlhttp.send();
+	} else {
+		alert('Unable to fetch data');
+	}
+	
+}
+
+
 

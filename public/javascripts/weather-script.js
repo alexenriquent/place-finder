@@ -22,7 +22,7 @@ function getGeolocation() {
 	};
 
 	if (window.XMLHttpRequest) {
-		xmlhttp = new XMLHttpRequest();
+		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.addEventListener('load', function() {
 			var response = JSON.parse(xmlhttp.responseText);
 
@@ -51,7 +51,7 @@ function getWeather(latitude, longitude) {
         + latitude + "'&lon='" + longitude + "'&APPID=" + key;
 
     if (window.XMLHttpRequest) {
-    	xmlhttp = new XMLHttpRequest();
+    	var xmlhttp = new XMLHttpRequest();
     	xmlhttp.addEventListener('load', function() {
     		var response = JSON.parse(xmlhttp.responseText);
 
@@ -112,5 +112,5 @@ function jsonFlickrApi(response) {
 }
 
 $(document).ready(function() {
-	getGeolocationAndWeather();
+	// getGeolocationAndWeather();
 });
