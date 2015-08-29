@@ -60,7 +60,6 @@ function createMarker(place) {
 
 	google.maps.event.addListener(marker, 'click', function() {
 		getPlaceInfo(lat, lng, place.name);
-		// infowindow.setContent(place.name);
 		infowindow.open(map, this);
 	});
 
@@ -138,10 +137,18 @@ function getPlaceInfo(latitude, longitude, name) {
 			var placeID;
 
 			for (var i = 0; i < response.response.venues.length; i++) {
-				if (response.response.venues[i].name.split(' ')[0].toLowerCase() == placeName) {
+				if (response.response.venues[i].name.split(' ')[0].toLowerCase() == placeName &&
+					placeName != 'the') {
 					placeID = response.response.venues[i].id;
-					getPlacePhoto(placeID);
+					getPlaceDetails(placeID);
 					break;
+				} else if (placeName == 'the') {
+					if (response.response.venues[i].name.split(' ')[1].toLowerCase() == 
+						name.split(' ')[1].toLowerCase()) {
+						placeID = response.response.venues[i].id;
+						getPlaceDetails(placeID);
+						break;
+					}
 				} else {
 					infowindow.setContent('<strong>' + name + '</strong>');
 				}
@@ -159,42 +166,42 @@ function getPlaceInfo(latitude, longitude, name) {
 	}
 }
 
-function getPlacePhoto(placeID) {
-	var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
-	var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
-	var url = 'https://api.foursquare.com/v2/venues/' + placeID + '/photos?client_id=' 
-			+ id + '&client_secret=' + secret + '&v=20150829';
+// function getPlacePhoto(placeID) {
+// 	var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
+// 	var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
+// 	var url = 'https://api.foursquare.com/v2/venues/' + placeID + '/photos?client_id=' 
+// 			+ id + '&client_secret=' + secret + '&v=20150829';
 
-	if (window.XMLHttpRequest) {
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.addEventListener('load', function() {
-			var response = JSON.parse(xmlhttp.responseText);
-			var size = '200x200';
-			var prefix;
-			var suffix;
-			var photo;
+// 	if (window.XMLHttpRequest) {
+// 		var xmlhttp = new XMLHttpRequest();
+// 		xmlhttp.addEventListener('load', function() {
+// 			var response = JSON.parse(xmlhttp.responseText);
+// 			var size = '200x200';
+// 			var prefix;
+// 			var suffix;
+// 			var photo;
 			
-			if (response.response.photos.count > 0) {
-				var prefix = response.response.photos.items[0].prefix;
-				var suffix = response.response.photos.items[0].suffix;
-				var photo = prefix + size + suffix;
-			}
+// 			if (response.response.photos.count > 0) {
+// 				prefix = response.response.photos.items[0].prefix;
+// 				suffix = response.response.photos.items[0].suffix;
+// 				photo = prefix + size + suffix;
+// 			}
 
-			getPlaceDetails(placeID, photo);
-		}, false);
+// 			getPlaceDetails(placeID, photo);
+// 		}, false);
 
-		xmlhttp.addEventListener('error', function(err) {
-			alert('Unable to complete the request');
-		}, false);
+// 		xmlhttp.addEventListener('error', function(err) {
+// 			alert('Unable to complete the request');
+// 		}, false);
 
-		xmlhttp.open('GET', url, true);
-		xmlhttp.send();
-	} else {
-		alert('Unable to fetch data from Foursquare');
-	}
-} 
+// 		xmlhttp.open('GET', url, true);
+// 		xmlhttp.send();
+// 	} else {
+// 		alert('Unable to fetch data from Foursquare');
+// 	}
+// } 
 
-function getPlaceDetails(placeID, photo) {
+function getPlaceDetails(placeID) {
 	var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
 	var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
 	var url = 'https://api.foursquare.com/v2/venues/' + placeID + '?client_id=' 
@@ -205,25 +212,40 @@ function getPlaceDetails(placeID, photo) {
 		xmlhttp.addEventListener('load', function() {
 			var response = JSON.parse(xmlhttp.responseText);
 			var content = '';
+			var size = '200x200';
+			var prefix;
+			var suffix;
+			var photo;
+
+			if (response.response.venue.photos.count > 0) {
+				prefix = response.response.venue.photos.groups[0].items[0].prefix;
+				suffix = response.response.venue.photos.groups[0].items[0].suffix;
+				photo = prefix + size + suffix;
+			}
 
 			var name = response.response.venue.name;
-			var phoneNumber = response.response.venue.contact.phone;
+			var rating = response.response.venue.rating;
 			var address = response.response.venue.location.formattedAddress[0];
+			var phoneNumber = response.response.venue.contact.phone;
 			var website = response.response.venue.url;
 			var foursquare = response.response.venue.canonicalUrl;
-			
+
 			if (dataAvailable(photo)) {
-				content += '<br/><img src="' + photo + '" class="img-responsive"' 
+				content += '<br/><img src="' + photo 
+						+ '" class="img-responsive"' 
 						+ ' style="margin-left:21px;">';
 			}
 			if (dataAvailable(name)) {
 				content += '<br/><strong>'+ name + '</strong>';
 			}
-			if (dataAvailable(phoneNumber)) {
-				content += '<br/>Phone number: ' + phoneNumber;
+			if (dataAvailable(rating)) {
+				content += '<br/>Rating: ' + rating + '/10';
 			}
 			if (dataAvailable(address)) {
 				content += '<br/>Address: ' + address;
+			}
+			if (dataAvailable(phoneNumber)) {
+				content += '<br/>Tel: ' + phoneNumber;
 			}
 			if (dataAvailable(website)) {
 				content += '<br/>Website: <a href="' 
@@ -246,7 +268,6 @@ function getPlaceDetails(placeID, photo) {
 	} else {
 		alert('Unable to fetch data from Foursquare');
 	}
-
 }
 
 function dataAvailable(data) {
