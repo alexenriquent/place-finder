@@ -1,0 +1,35 @@
+{
+	"google": {
+		"key": "AIzaSyBE0F5GdLcE3651WbPXlUhuKINvpwij5ZQ",
+		"nearbySearch": "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyBE0F5GdLcE3651WbPXlUhuKINvpwij5ZQ",
+		"textSearch": "https://maps.googleapis.com/maps/api/place/textsearch/xml?query=restaurants+in+Sydney&key=AIzaSyBE0F5GdLcE3651WbPXlUhuKINvpwij5ZQ",
+		"radarSearch": "https://maps.googleapis.com/maps/api/place/radarsearch/json?location=48.859294,2.347589&radius=5000&types=food|cafe&keyword=vegetarian&key=AIzaSyBE0F5GdLcE3651WbPXlUhuKINvpwij5ZQ",
+		"placePhotos": "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={photo-reference}&key=AIzaSyBE0F5GdLcE3651WbPXlUhuKINvpwij5ZQ" 
+	},
+	"yelp": {
+		"consumerKey": "UJ5DQ_5Y4qSnlVe0z1-lJw",
+		"consumerSecret": "NLvSWSPgKlP51OrMt208iyVtTQM",
+		"token": "gYZYTSw5CDkSvbhlhr1TIsjeOVJnHyoH",
+		"tokenSecret": "OIaq2DcL4WnYEkM9_gSk4eAbTBE"
+	},
+	"foursquare": {
+		"clientId": "IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF",
+		"clientSecret": "5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO",
+		"venueSearch": "https://api.foursquare.com/v2/venues/search?client_id=IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF&client_secret=5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO&v=20150829&ll=-27.469592089206213,153.02525997161865",
+		"venueExplore": "https://api.foursquare.com/v2/venues/explore?client_id=IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF&client_secret=5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO&v=20150829&ll=--27.469592089206213,153.02525997161865",
+		"venueDetails" : "https://api.foursquare.com/v2/venues/55703dba498efe5caf244480?client_id=IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF&client_secret=5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO&v=20150829",
+		"venueImage": "https://api.foursquare.com/v2/venues/43695300f964a5208c291fe3/photos?client_id=IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF&client_secret=5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO&v=20150829"
+	}, 
+	"telize": {
+		"geolocation": "http://www.telize.com/geoip"
+	},
+	"openWeatherMap": {
+		"key": "5e2107b0ce1ca798d76e32f41dcc81fe",
+		"weatherData": "api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&APPID=5e2107b0ce1ca798d76e32f41dcc81fe"
+	},
+	"flickr": {
+		"key": "34b0b3186145bc89472de08424c099f7",
+		"secret": "8b5d3fcf91974839",
+		"imageSearch": "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=34b0b3186145bc89472de08424c099f7&lat={lat}&lon={long}&accuracy=1&tags=cloudy&sort=relevance&extras=url_l&format=json"
+	}
+}
