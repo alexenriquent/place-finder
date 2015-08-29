@@ -191,6 +191,10 @@ h1, h2, h3, h4, h5, h6 {
 	height: 500px;
 }
 
+#windowinfo-content {
+	margin-left: 50px;
+}
+
 #social-media {
 	height: 21px;
 }
