@@ -13,12 +13,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://alexenriquent@bitbucket.org/alexenriquent/api-mashup.git"
+    "url": "git+https://alexenriquent@github.com/alexenriquent/api-mashup.git"
   },
   "keywords": [
+    "API",
     "mashup"
   ],
   "author": "Thanat Chokwijitkul",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/alexenriquent/api-mashup#readme"
+  "bugs": {
+    "url": "https://github.com/alexenriquent/api-mashup/issues"
+  },
+  "homepage": "https://github.com/alexenriquent/api-mashup#readme"
 }

@@ -112,5 +112,5 @@ function jsonFlickrApi(response) {
 }
 
 $(document).ready(function() {
-	// getGeolocationAndWeather();
+	getGeolocationAndWeather();
 });
