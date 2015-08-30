@@ -17,7 +17,7 @@ function initMap() {
 
         infowindow = new google.maps.InfoWindow({
         	maxWidth: 200
-        });
+       	});
 		var type = null;
 		searchNearby(type);
     }, function() {
@@ -137,18 +137,10 @@ function getPlaceInfo(latitude, longitude, name) {
 			var placeID;
 
 			for (var i = 0; i < response.response.venues.length; i++) {
-				if (response.response.venues[i].name.split(' ')[0].toLowerCase() == placeName &&
-					placeName != 'the') {
+				if (response.response.venues[i].name.split(' ')[0].toLowerCase() == placeName) {
 					placeID = response.response.venues[i].id;
 					getPlaceDetails(placeID);
 					break;
-				} else if (placeName == 'the') {
-					if (response.response.venues[i].name.split(' ')[1].toLowerCase() == 
-						name.split(' ')[1].toLowerCase()) {
-						placeID = response.response.venues[i].id;
-						getPlaceDetails(placeID);
-						break;
-					}
 				} else {
 					infowindow.setContent('<strong>' + name + '</strong>');
 				}
@@ -166,41 +158,6 @@ function getPlaceInfo(latitude, longitude, name) {
 	}
 }
 
-// function getPlacePhoto(placeID) {
-// 	var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
-// 	var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
-// 	var url = 'https://api.foursquare.com/v2/venues/' + placeID + '/photos?client_id=' 
-// 			+ id + '&client_secret=' + secret + '&v=20150829';
-
-// 	if (window.XMLHttpRequest) {
-// 		var xmlhttp = new XMLHttpRequest();
-// 		xmlhttp.addEventListener('load', function() {
-// 			var response = JSON.parse(xmlhttp.responseText);
-// 			var size = '200x200';
-// 			var prefix;
-// 			var suffix;
-// 			var photo;
-			
-// 			if (response.response.photos.count > 0) {
-// 				prefix = response.response.photos.items[0].prefix;
-// 				suffix = response.response.photos.items[0].suffix;
-// 				photo = prefix + size + suffix;
-// 			}
-
-// 			getPlaceDetails(placeID, photo);
-// 		}, false);
-
-// 		xmlhttp.addEventListener('error', function(err) {
-// 			alert('Unable to complete the request');
-// 		}, false);
-
-// 		xmlhttp.open('GET', url, true);
-// 		xmlhttp.send();
-// 	} else {
-// 		alert('Unable to fetch data from Foursquare');
-// 	}
-// } 
-
 function getPlaceDetails(placeID) {
 	var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
 	var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
@@ -212,48 +169,87 @@ function getPlaceDetails(placeID) {
 		xmlhttp.addEventListener('load', function() {
 			var response = JSON.parse(xmlhttp.responseText);
 			var content = '';
-			var size = '200x200';
-			var prefix;
-			var suffix;
 			var photo;
+			var photoLink = {
+				size: '200x200',
+				prefix: null,
+				suffix: null
+			};
 
 			if (response.response.venue.photos.count > 0) {
-				prefix = response.response.venue.photos.groups[0].items[0].prefix;
-				suffix = response.response.venue.photos.groups[0].items[0].suffix;
-				photo = prefix + size + suffix;
+				photoLink.prefix = response.response.venue.photos.groups[0].items[0].prefix;
+				photoLink.suffix = response.response.venue.photos.groups[0].items[0].suffix;
+				photo = photoLink.prefix + photoLink.size + photoLink.suffix;
 			}
 
-			var name = response.response.venue.name;
-			var rating = response.response.venue.rating;
-			var address = response.response.venue.location.formattedAddress[0];
-			var phoneNumber = response.response.venue.contact.phone;
-			var website = response.response.venue.url;
-			var foursquare = response.response.venue.canonicalUrl;
+			var details = {
+				name: response.response.venue.name,
+				rating: response.response.venue.rating,
+				address: response.response.venue.location.formattedAddress[0],
+				phoneNumber: response.response.venue.contact.phone,
+				website: response.response.venue.url,
+				foursquare: response.response.venue.canonicalUrl,
+				tips: [
+					{
+						tip: response.response.venue.tips.groups[0].items[0].text,
+						firstName: response.response.venue.tips.groups[0].items[0].user.firstName,
+						lastName: response.response.venue.tips.groups[0].items[0].user.lastName
+					},
+					{
+						tip: response.response.venue.tips.groups[0].items[1].text,
+						firstName: response.response.venue.tips.groups[0].items[1].user.firstName,
+						lastName: response.response.venue.tips.groups[0].items[1].user.lastName
+					}
+				]
+			};
 
 			if (dataAvailable(photo)) {
 				content += '<br/><img src="' + photo 
 						+ '" class="img-responsive"' 
 						+ ' style="margin-left:21px;">';
 			}
-			if (dataAvailable(name)) {
-				content += '<br/><strong>'+ name + '</strong>';
+			if (dataAvailable(details.name)) {
+				content += '<br/><strong>'+ details.name + '</strong>';
 			}
-			if (dataAvailable(rating)) {
-				content += '<br/>Rating: ' + rating + '/10';
+			if (dataAvailable(details.rating)) {
+				content += '<br/>Rating: ' + details.rating + '/10';
 			}
-			if (dataAvailable(address)) {
-				content += '<br/>Address: ' + address;
+			if (dataAvailable(details.address)) {
+				content += '<br/>Address: ' + details.address;
 			}
-			if (dataAvailable(phoneNumber)) {
-				content += '<br/>Tel: ' + phoneNumber;
+			if (dataAvailable(details.phoneNumber)) {
+				content += '<br/>Tel: ' + details.phoneNumber;
 			}
-			if (dataAvailable(website)) {
+			if (dataAvailable(details.website)) {
 				content += '<br/>Website: <a href="' 
-						+ website + '">' + name + '</a>';
+						+ details.website + '">' + details.name + '</a>';
 			}
-			if (dataAvailable(foursquare)) {
+			if (dataAvailable(details.foursquare)) {
 				content += '<br/>Foursquare: <a href="' 
-						+ foursquare + '">View on Foursquare</a></div>';
+						+ details.foursquare + '">View on Foursquare</a>';
+			}
+			if (dataAvailable(details.tips[0])) {
+				content += '<br/><br/><strong>Tips and Reviews</strong>'
+						+ '<br>"' + details.tips[0].tip + '"';
+				if (dataAvailable(details.tips[0].firstName)) {
+					content += ' — ' + details.tips[0].firstName;
+					if (dataAvailable(details.tips[0].lastName)) {
+						content += ' ' + details.tips[0].lastName;
+					}
+				} 
+			}
+			if (dataAvailable(details.tips[1])) {
+				content += '<br><br/>"' + details.tips[1].tip + '"';
+				if (dataAvailable(details.tips[1].firstName)) {
+					content += ' — ' + details.tips[1].firstName;
+					if (dataAvailable(details.tips[1].lastName)) {
+						content += ' ' + details.tips[1].lastName;
+					}
+				} 
+			}
+			if (dataAvailable(details.foursquare)) {
+				content += '<br/><br/>View more reviews on <a href="' 
+						+ details.foursquare + '">Foursquare</a>';
 			}
 
 			infowindow.setContent(content);
