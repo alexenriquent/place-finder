@@ -75,36 +75,41 @@ h1, h2, h3, h4, h5, h6 {
 #city-name {
 	color: #FFFFFF;
 	font-family: 'Roboto', sans-serif;
+	font-size: 5.5em;
 	font-weight: 300;
-	text-shadow: 0 0 3px #000000;
+	/*text-shadow: 0 0 3px #000000;*/
 }
 
 #temperature {
 	color: #FFFFFF;
 	font-family: 'Roboto', sans-serif;
+	font-size: 1.5em;
 	font-weight: 300;
-	text-shadow: 0 0 3px #000000;
+	/*text-shadow: 0 0 3px #000000;*/
 }
 
 #weather-description {
 	color: #FFFFFF;
 	font-family: 'Roboto', sans-serif;
+	font-size: 1.5em;
 	font-weight: 300;
-	text-shadow: 0 0 3px #000000;
+	/*text-shadow: 0 0 3px #000000;*/
 }
 
 #min-temp {
 	color: #FFFFFF;
 	font-family: 'Roboto', sans-serif;
+	font-size: 1.5em;
 	font-weight: 300;
-	text-shadow: 0 0 3px #000000;
+	/*text-shadow: 0 0 3px #000000;*/
 }
 
 #max-temp {
 	color: #FFFFFF;
 	font-family: 'Roboto', sans-serif;
+	font-size: 1.5em;
 	font-weight: 300;
-	text-shadow: 0 0 3px #000000;
+	/*text-shadow: 0 0 3px #000000;*/
 }
 
 #about {

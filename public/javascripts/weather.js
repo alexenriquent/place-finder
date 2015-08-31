@@ -91,7 +91,7 @@ function getBackground(latitude, longitude, keyword) {
 
 	script.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
                 + "&api_key=" + key + "&lat=" + latitude + "&lon=" + longitude 
-                + "&accuracy=1&tags=" + keyword + "&sort=relevance&extras=url_l&format=json";
+                + "&accuracy=1&tags=" + keyword + ",bw&sort=relevance&extras=url_l&format=json";
 
     document.getElementsByTagName('body')[0].appendChild(script);
 }

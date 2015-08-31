@@ -272,4 +272,3 @@ function dataAvailable(data) {
 	}
 	return false;
 }
-
