@@ -18,8 +18,10 @@ app.use(express.static(__dirname + '/public'));
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 
-// Routes
+// Static route
 app.get('/', routes.index);
+
+// API routes
 app.get('/geolocation', api.geolocation);
 app.get('/weather/:location', api.weather);
 app.get('/photo/:location', api.photo);

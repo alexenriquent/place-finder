@@ -65,27 +65,61 @@
 
 	<!-- Labelled buttons - Places -->
 	<div id='places' class='text-padding'>
-		<div id='places-container' class='container'>
-			<h3 class='text-center'>Places</h3>
-			<p id='places-description' class='text-center'>This API mashup brings you an easy way to find nearby business and services.</p>
-			<br/> <!-- line break -->
-			<!-- <hr/> horizontal line -->
-			<div class='btn-toolbar' role='toolbar'>
-				<div class='btn-group btn-group-lg btn-group-justified btn-group-fill-height'>
-					<a href='#map-canvas' class='btn btn-default' role='button'><span>Food</span></a>
-					<a href='#map-canvas' class='btn btn-default' role='button'><span>Cafe</span></a>
-					<a href='#map-canvas' class='btn btn-default' role='button'><span>Bar</span></a>
-					<a href='#map-canvas' class='btn btn-default' role='button'><span>Night Club<span></a>
-				</div> <!-- btn-group -->
-				<div class='btn-group btn-group-lg btn-group-justified btn-group-fill-height'>
-					<a href='#map-canvas' class='btn btn-default' role='button'><span>Meal Delivery<span></a>
-					<a href='#map-canvas' class='btn btn-default' role='button'><span>Meal Takeaway<span></a>
-					<a href='#map-canvas' class='btn btn-default' role='button'><span>Bakery<span></a>
-					<a href='#map-canvas' class='btn btn-default' role='button'><span>Liquor<span></a>
-				</div> <!-- btn-group -->
-			</div> <!-- btn-toolbar -->
-			<br/>
-		</div> <!-- container -->
+		<div id='carousel' class='carousel slide' data-interval='false'>
+			<!-- Indicators -->
+			<ol id='indicators' class='carousel-indicators'>
+				<li data-target='#carousel' data-slide-to='0' class='active'></li>
+				<li data-target='#carousel' data-slide-to='1'></li>
+				<li data-target='#carousel' data-slide-to='2'></li>
+			</ol>
+			<div id='places-container' class='container'>
+				<h3 class='text-center'>Places</h3>
+				<p id='places-description' class='text-center'>This API mashup brings you an easy way to find nearby business and services.</p>
+				<br/> <!-- line break -->
+				<!-- <hr/> horizontal line -->
+				<div class='carousel-inner'>
+					<div class='item active'>
+						<div class='btn-toolbar' role='toolbar'>
+							<div class='btn-group btn-group-lg btn-group-justified btn-group-fill-height'>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Food</span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Cafe</span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Bar</span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Night Club<span></a>
+							</div> <!-- btn-group -->
+							<div class='btn-group btn-group-lg btn-group-justified btn-group-fill-height'>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Meal Delivery<span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Meal Takeaway<span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Bakery<span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Liquor<span></a>
+							</div> <!-- btn-group -->
+						</div> <!-- btn-toolbar -->
+					</div> <!-- item -->
+					<div class='item'>
+						<div class='btn-toolbar' role='toolbar'>
+							<div class='btn-group btn-group-lg btn-group-justified btn-group-fill-height'>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Department Store</span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Shopping Mall</span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Book Store<span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Electronics Store<span></a>
+							</div> <!-- btn-group -->
+							<div class='btn-group btn-group-lg btn-group-justified btn-group-fill-height'>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Clothing Store</span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Shoe Store<span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Supermarket<span></a>
+								<a href='#map-canvas' class='btn btn-default' role='button'><span>Convenience Store<span></a>
+							</div> <!-- btn-group -->
+						</div> <!-- btn-toolbar -->
+					</div> <!-- item -->
+				</div> <!-- carousel-inner -->
+				<a class='left carousel-control' href='#carousel' data-slide='prev'>
+					<span class='icon-prev'></span>
+				</a>
+				<a class='right carousel-control' href='#carousel' data-slide='next'>
+					<span class='icon-next'></span>
+				</a>
+				<br/>
+			</div> <!-- container -->
+		</div> <!-- carousel slide -->
 	</div> <!-- Places -->
 
 	<!-- Map -->

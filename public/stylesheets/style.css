@@ -121,7 +121,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #about-content p {
-	margin: 0px 50px 0px 50px;
+	margin: 0px 85px 0px 85px;
 }
 
 .text-padding {
@@ -134,6 +134,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #places-container {
 	width: 80%;
+	height: 400px;
 }
 
 #places-container h3, hr {
@@ -142,6 +143,10 @@ h1, h2, h3, h4, h5, h6 {
 
 #places-description {
 	color: #BDBDBD;
+}
+
+#indicators {
+	margin-bottom: -15px;
 }
 
 .btn-group-fill-height .btn {

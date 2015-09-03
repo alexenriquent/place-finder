@@ -111,11 +111,14 @@ function placesSearch() {
 
 window.onload = function() {
 	var types = ['restaurant', 'cafe', 'bar', 'night_club', 
-				'meal_delivery', 'meal_takeaway', 'bakery', 'liquor_store'];
+				'meal_delivery', 'meal_takeaway', 'bakery', 'liquor_store',
+				'department_store', 'shopping_mall', 'book_store', 'electronics_store', 
+				'clothing_store', 'shoe store', 'grocery_or_supermarket', 
+				'convinience_store'];
 	var buttons = [];
 	buttons = document.getElementsByClassName('btn');
 
-	for (var i = 0; i < 10; i++) {
+	for (var i = 0; i < 16; i++) {
 		buttonSearch(buttons[i], types[i]);
 	}
 }
