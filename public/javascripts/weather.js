@@ -82,14 +82,27 @@ function kelvinToCelsius(kelvin) {
 }
 
 function getBackground(latitude, longitude, keyword) {
-	var key = '34b0b3186145bc89472de08424c099f7';
 	var script = document.createElement('script');
+	var params = latitude + ',' + longitude + ',' + keyword;
+	var url = 'http://localhost:8080/flickr/' + params;
 
-	script.src = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
-                + "&api_key=" + key + "&lat=" + latitude + "&lon=" + longitude 
-                + "&accuracy=1&tags=" + keyword + ",bw&sort=relevance&extras=url_l&format=json";
+ 	if (window.XMLHttpRequest) {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.addEventListener('load', function() {
+			var response = xmlhttp.responseText;
+			script.src = response;
+			document.getElementsByTagName('body')[0].appendChild(script);
+		}, false);
 
-    document.getElementsByTagName('body')[0].appendChild(script);
+		xmlhttp.addEventListener('error', function(err) {
+			alert('Unable to complete the request');
+		}, false);
+
+		xmlhttp.open('GET', url, true);
+		xmlhttp.send();
+	} else {
+		alert('Unable to fetch the geolocation data');
+	}
 }
 
 function jsonFlickrApi(response) {

@@ -19,8 +19,8 @@ module.exports = {
 	},
 
 	weather: function(req, res) {
-		var location = req.params.location.split(',');
-		var position = {latitude: location[0], longitude: location[1]};
+		var params = req.params.location.split(',');
+		var position = {latitude: params[0], longitude: params[1]};
 		var key = '5e2107b0ce1ca798d76e32f41dcc81fe'; 
 		var url = "http://api.openweathermap.org/data/2.5/weather?lat='" 
         		+ position.latitude + "'&lon='" + position.longitude 
@@ -36,5 +36,20 @@ module.exports = {
 			var info = JSON.parse(body);
 			res.send(info);
         });
+	},
+
+	flickr: function(req, res) {
+		var params = req.params.location.split(',');
+		var position = {latitude: params[0], longitude: params[1]};
+		var keyword = params[2];
+		var key = '34b0b3186145bc89472de08424c099f7';
+		var url = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
+                + "&api_key=" + key + "&lat=" + position.latitude + "&lon=" 
+                + position.longitude + "&accuracy=1&tags=" + keyword 
+                + ",bw&sort=relevance&extras=url_l&format=json";
+
+        res.send(url);
 	}
 };
+
+
