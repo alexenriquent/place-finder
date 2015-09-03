@@ -1,6 +1,6 @@
 /**
  * @file Initialise the app
- /*
+ */
 
 /** Module dependencies */
 var express = require('express');
