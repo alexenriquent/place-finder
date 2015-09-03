@@ -42,15 +42,14 @@ function getGeolocation() {
 }
 
 function getWeather(latitude, longitude) {
-	var key = '5e2107b0ce1ca798d76e32f41dcc81fe';
-	var weatherDescription;
-	var url = "http://api.openweathermap.org/data/2.5/weather?lat='" 
-        + latitude + "'&lon='" + longitude + "'&APPID=" + key;
+ 	var param = latitude + ',' + longitude;
+ 	var url = 'http://localhost:8080/weather/' + param;
 
     if (window.XMLHttpRequest) {
     	var xmlhttp = new XMLHttpRequest();
     	xmlhttp.addEventListener('load', function() {
     		var response = JSON.parse(xmlhttp.responseText);
+    		var weatherDescription;
 
     		currentWeatherData.currentTempValue = kelvinToCelsius(response.main.temp);
     		currentWeatherData.minTempValue = kelvinToCelsius(response.main.temp_min);

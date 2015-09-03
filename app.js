@@ -21,6 +21,7 @@ app.set('view engine', 'html');
 // Routes
 app.get('/', routes.index);
 app.get('/geolocation', api.geolocation);
+app.get('/weather/:location', api.weather);
 
 // Catch 404 and forward to rror handler
 app.use(function(req, res, next) {
