@@ -72,7 +72,7 @@ module.exports = {
         });
 	},
 
-	placeDetails: function(req, res) {
+	placeData: function(req, res) {
 		var param = req.params.id;
 		var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
 		var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';

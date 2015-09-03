@@ -5,27 +5,25 @@ var pos = {lat: 0, long: 0};
 
 function initMap() {
 	if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-        pos.lat = position.coords.latitude,
-        pos.lng = position.coords.longitude
-        map = new google.maps.Map(document.getElementById('map-canvas'), {
-            center: pos,
-            zoom: 16
-        });
-
-        placesSearch();
-
-        infowindow = new google.maps.InfoWindow({
-        	maxWidth: 200
-       	});
-		var type = null;
-		searchNearby(type);
-    }, function() {
-        handleLocationError(true, infowindow, map.getCenter());
-    });
-  } else {
-    handleLocationError(false, infowindow, map.getCenter());
-  }
+    	navigator.geolocation.getCurrentPosition(function(position) {
+        	pos.lat = position.coords.latitude,
+        	pos.lng = position.coords.longitude
+        	map = new google.maps.Map(document.getElementById('map-canvas'), {
+            	center: pos,
+            	zoom: 16
+        	});
+        	placesSearch();
+        	infowindow = new google.maps.InfoWindow({
+        		maxWidth: 200
+       		});
+			var type = null;
+			searchNearby(type);
+    	}, function() {
+        	handleLocationError(true, infowindow, map.getCenter());
+    	});
+  	} else {
+    	handleLocationError(false, infowindow, map.getCenter());
+  	}
 }
 
 function searchNearby(type) {
@@ -136,7 +134,7 @@ function getPlaceInfo(latitude, longitude, name) {
 			for (var i = 0; i < response.response.venues.length; i++) {
 				if (response.response.venues[i].name.split(' ')[0].toLowerCase() == placeName) {
 					placeID = response.response.venues[i].id;
-					getPlaceDetails(placeID);
+					getPlaceData(placeID);
 					break;
 				} else {
 					infowindow.setContent('<strong>' + name + '</strong>');
@@ -155,12 +153,8 @@ function getPlaceInfo(latitude, longitude, name) {
 	}
 }
 
-function getPlaceDetails(placeID) {
-	// var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
-	// var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
-	// var url = 'https://api.foursquare.com/v2/venues/' + placeID + '?client_id=' 
-	// 		+ id + '&client_secret=' + secret + '&v=20150829';
-	var url = 'http://localhost:8080/placedetails/' + placeID;
+function getPlaceData(placeID) {
+	var url = 'http://localhost:8080/placedata/' + placeID;
 
 	if (window.XMLHttpRequest) {
 		var xmlhttp = new XMLHttpRequest();
