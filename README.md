@@ -25,4 +25,5 @@ The Google Maps API is commonly used to embed Google Maps onto web applications 
 The Google Places API is a web service that provides information about a particular place using specified parameters, such as latitude and longitude coordinates. This API will be used with the Google Maps API.
 
 **Foursquare API**
+
 The Foursquare API, currently in V2, grants access to the company's database of location as well as information on venue check in's. The APIs are Restful and support XML, JSON and JSONP.
