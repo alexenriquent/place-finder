@@ -110,15 +110,19 @@ function placesSearch() {
 }
 
 window.onload = function() {
+	var numButtons = 32;
 	var types = ['restaurant', 'cafe', 'bar', 'night_club', 
 				'meal_delivery', 'meal_takeaway', 'bakery', 'liquor_store',
-				'department_store', 'shopping_mall', 'book_store', 'electronics_store', 
-				'clothing_store', 'shoe store', 'grocery_or_supermarket', 
-				'convinience_store'];
+				'department_store', 'shopping_mall', 'electronics_store', 
+				'book_store', 'clothing_store', 'shoe store', 'grocery_or_supermarket', 
+				'convinience_store', 'library', 'art_gallery', 'museum', 'casino',
+				'movie_theater', 'bowling_alley', 'gym', 'park',
+				'atm', 'bank', 'post_office', 'police', 'health',
+				'hospital', 'doctor', 'dentist'];
 	var buttons = [];
 	buttons = document.getElementsByClassName('btn');
 
-	for (var i = 0; i < 16; i++) {
+	for (var i = 0; i < numButtons; i++) {
 		buttonSearch(buttons[i], types[i]);
 	}
 }
