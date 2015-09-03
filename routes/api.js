@@ -70,7 +70,24 @@ module.exports = {
 			var info = JSON.parse(body);
 			res.send(info);
         });
+	},
+
+	placeDetails: function(req, res) {
+		var param = req.params.id;
+		var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
+		var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
+		var url = 'https://api.foursquare.com/v2/venues/' + param + '?client_id=' 
+			+ id + '&client_secret=' + secret + '&v=20150829';
+
+		request(url, function(error, response, body) {
+        	if (error) {
+				return console.log('Error: ', error);
+			}
+			if (response.statusCode !== 200) {
+				return console.log('Invalid status code: ', response.statusCode);
+			}
+			var info = JSON.parse(body);
+			res.send(info);
+        });
 	}
 };
-
-

@@ -24,6 +24,7 @@ app.get('/geolocation', api.geolocation);
 app.get('/weather/:location', api.weather);
 app.get('/photo/:location', api.photo);
 app.get('/placeinfo/:location', api.placeInfo);
+app.get('/placedetails/:id', api.placeDetails);
 
 // Catch 404 and forward to rror handler
 app.use(function(req, res, next) {
