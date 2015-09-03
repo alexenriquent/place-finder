@@ -1,3 +1,7 @@
+/**
+ * @file Geolocation and weather data
+ */
+
 var currentWeatherData = {
 	city: document.getElementById('city-name'),
 	weather: document.getElementById('weather-description'),
@@ -10,10 +14,17 @@ var currentWeatherData = {
 	unit: '°C'
 };
 
+/**
+ * Get geolocation and weather data including 
+ * a photo retrieved from Flickr
+ */
 function getGeolocationAndWeather() {
 	getGeolocation();
 }
 
+/**
+ * Get geolocation data from the server
+ */
 function getGeolocation() {
 	var url = 'http://localhost:8080/geolocation';
 	var position = {latitude: 0, longitude: 0};
@@ -41,6 +52,11 @@ function getGeolocation() {
 	}
 }
 
+/**
+ * Get weather information from the server
+ * @param {Number} latitude - Geographic cooridinate (latitude)
+ * @param {Number} longitude - Geographic cooridinate (longitude)
+ */
 function getWeather(latitude, longitude) {
  	var param = latitude + ',' + longitude;
  	var url = 'http://localhost:8080/weather/' + param;
@@ -77,10 +93,21 @@ function getWeather(latitude, longitude) {
     }
 }
 
+/**
+ * Convert temperature unit from Kelvin to Celsius
+ * @param {Number} kelvin - Temperature in Kelvin
+ * @return {Number} Converted value in Celsius 
+ */
 function kelvinToCelsius(kelvin) {
 	return (kelvin - 273.15).toFixed(2);
 }
 
+/**
+ * Get background image from Flickr
+ * @param {Number} latitude - Geographic cooridinate (latitude)
+ * @param {Number} longitude - Geographic cooridinate (longitude)
+ * @param {String} keyword - Weather description
+ */
 function getBackground(latitude, longitude, keyword) {
 	var script = document.createElement('script');
 	var params = latitude + ',' + longitude + ',' + keyword;
@@ -105,6 +132,10 @@ function getBackground(latitude, longitude, keyword) {
 	}
 }
 
+/**
+ * Flickr API callback function
+ * @param {String} response - Response from the Flickr API
+ */
 function jsonFlickrApi(response) {
     if (response.photos.photo.length > 0){
     	var photo;

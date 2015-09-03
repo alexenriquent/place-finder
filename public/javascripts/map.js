@@ -1,8 +1,15 @@
+/**
+ * @file Map and places
+ */
+
 var map;
 var markers = [];
 var infowindow;
 var pos = {lat: 0, long: 0};
 
+/**
+ * Initialise Google Map with current user's location
+ */
 function initMap() {
 	if (navigator.geolocation) {
     	navigator.geolocation.getCurrentPosition(function(position) {
@@ -26,6 +33,10 @@ function initMap() {
   	}
 }
 
+/**
+ * Search nearby places
+ * @param {String} type - Specified place category
+ */
 function searchNearby(type) {
 	var service = new google.maps.places.PlacesService(map);
 	if (type != null) {
@@ -37,6 +48,12 @@ function searchNearby(type) {
 	}
 }
 
+/**
+ * A callback function that creates makers on the map
+ * according to each search result
+ * @param {Object[]} results - Search results
+ * @param {String} status - Service status
+ */
 function callback(results, status) {
 	if (status === google.maps.places.PlacesServiceStatus.OK) {
 		clearMarkers();
@@ -46,6 +63,10 @@ function callback(results, status) {
 	}
 }
 
+/**
+ * Create a single marker on the map
+ * @param {Object} place - A place object
+ */
 function createMarker(place) {
 	var placeLoc = place.geometry.location;
 	var marker = new google.maps.Marker({
@@ -64,6 +85,9 @@ function createMarker(place) {
 	markers.push(marker);
 }
 
+/**
+ * Remove all markers from the map
+ */
 function clearMarkers() {
 	for (var i = 0; i < markers.length; i++) {
 			markers[i].setMap(null);
@@ -71,12 +95,21 @@ function clearMarkers() {
 		markers = [];
 }
 
+/**
+ * Search nearby places when a button is clicked
+ * @param {Object} button - A button labelled with a place category
+ * @param {String} type - Specified place category
+ */
 function buttonSearch(button, type) {
 	button.onclick = function() {
 		searchNearby(type);
 	};
 }
 
+/**
+ * Add a search box onto the map and implement 
+ * autocomplete functionality 
+ */
 function placesSearch() {
 	var input = document.getElementById('places-input');
 	var searchBox = new google.maps.places.SearchBox(input);
@@ -109,6 +142,10 @@ function placesSearch() {
 	});
 }
 
+/**
+ * Match buttons with valid place categories from
+ * the Google Places API
+ */
 window.onload = function() {
 	var numButtons = 32;
 	var types = ['restaurant', 'cafe', 'bar', 'night_club', 
@@ -127,6 +164,12 @@ window.onload = function() {
 	}
 }
 
+/**
+ * Get places information in the specified area
+ * @param {Number} latitude - Geographic cooridinate (latitude)
+ * @param {Number} longitude - Geographic cooridinate (longitude)
+ * @param {String} name - Place name 
+ */
 function getPlaceInfo(latitude, longitude, name) {
 	var params = latitude + ',' + longitude;
 	var url = 'http://localhost:8080/placeinfo/' + params;
@@ -160,6 +203,10 @@ function getPlaceInfo(latitude, longitude, name) {
 	}
 }
 
+/**
+ * Get place data specified by a place ID
+ * @param {String} placeID - Place ID (From the Foursquare's database) 
+ */
 function getPlaceData(placeID) {
 	var url = 'http://localhost:8080/placedata/' + placeID;
 
@@ -265,6 +312,9 @@ function getPlaceData(placeID) {
 	}
 }
 
+/**
+ * Check if specified data is not null
+ */
 function dataAvailable(data) {
 	if (data != null) {
 		return true;

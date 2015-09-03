@@ -1,5 +1,11 @@
+/**
+ * @file Main JavaScript file
+ * Applying effects on the user interface
+ */
+
 $(document).ready(function() {
 
+	/** Smooth scrolling effect */
 	$('a[href^="#"]').on('click', function(e) {
 		e.preventDefault();
 

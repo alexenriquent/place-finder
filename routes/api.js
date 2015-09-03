@@ -1,8 +1,13 @@
-// Import the 'request' module
+/** Module dependencies */
 var request = require('request');
 
+/**
+ * RESTful API calls
+ * @module api
+ */
 module.exports = {
 
+	/** HTTP request to the Telize API */
 	geolocation: function(req, res) {
 		var url = 'http://www.telize.com/geoip';
 
@@ -18,6 +23,7 @@ module.exports = {
 		});
 	},
 
+	/** HTTP request to the Open Weather Map API */
 	weather: function(req, res) {
 		var params = req.params.location.split(',');
 		var position = {latitude: params[0], longitude: params[1]};
@@ -38,6 +44,7 @@ module.exports = {
         });
 	},
 
+	/** HTTP request to the Flickr API */
 	photo: function(req, res) {
 		var params = req.params.location.split(',');
 		var position = {latitude: params[0], longitude: params[1]};
@@ -51,6 +58,7 @@ module.exports = {
         res.send(url);
 	},
 
+	/** HTTP request to the Foursquare API */
 	placeInfo: function(req, res) {
 		var params = req.params.location.split(',');
 		var position = {latitude: params[0], longitude: params[1]};
@@ -72,6 +80,7 @@ module.exports = {
         });
 	},
 
+	/** HTTP request to the Foursquare API */
 	placeData: function(req, res) {
 		var param = req.params.id;
 		var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
