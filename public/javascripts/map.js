@@ -123,11 +123,14 @@ window.onload = function() {
 }
 
 function getPlaceInfo(latitude, longitude, name) {
-	var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
-	var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
-	var url = 'https://api.foursquare.com/v2/venues/search?client_id=' 
-			+ id + '&client_secret=' + secret + '&v=20150829&ll=' 
-			+ latitude + ',' + longitude;
+	// var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
+	// var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
+	// var url = 'https://api.foursquare.com/v2/venues/search?client_id=' 
+	// 		+ id + '&client_secret=' + secret + '&v=20150829&ll=' 
+	// 		+ latitude + ',' + longitude;
+
+	var params = latitude + ',' + longitude;
+	var url = 'http://localhost:8080/placeinfo/' + params;
 
 	if (window.XMLHttpRequest) {
 		var xmlhttp = new XMLHttpRequest();

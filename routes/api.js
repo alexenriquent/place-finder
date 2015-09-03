@@ -38,7 +38,7 @@ module.exports = {
         });
 	},
 
-	flickr: function(req, res) {
+	photo: function(req, res) {
 		var params = req.params.location.split(',');
 		var position = {latitude: params[0], longitude: params[1]};
 		var keyword = params[2];
@@ -49,6 +49,27 @@ module.exports = {
                 + ",bw&sort=relevance&extras=url_l&format=json";
 
         res.send(url);
+	},
+
+	placeInfo: function(req, res) {
+		var params = req.params.location.split(',');
+		var position = {latitude: params[0], longitude: params[1]};
+		var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
+		var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
+		var url = 'https://api.foursquare.com/v2/venues/search?client_id=' 
+			+ id + '&client_secret=' + secret + '&v=20150829&ll=' 
+			+ position.latitude + ',' + position.longitude;
+
+		request(url, function(error, response, body) {
+        	if (error) {
+				return console.log('Error: ', error);
+			}
+			if (response.statusCode !== 200) {
+				return console.log('Invalid status code: ', response.statusCode);
+			}
+			var info = JSON.parse(body);
+			res.send(info);
+        });
 	}
 };
 

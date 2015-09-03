@@ -22,7 +22,8 @@ app.set('view engine', 'html');
 app.get('/', routes.index);
 app.get('/geolocation', api.geolocation);
 app.get('/weather/:location', api.weather);
-app.get('/flickr/:location', api.flickr);
+app.get('/photo/:location', api.photo);
+app.get('/placeinfo/:location', api.placeInfo);
 
 // Catch 404 and forward to rror handler
 app.use(function(req, res, next) {

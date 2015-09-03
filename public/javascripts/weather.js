@@ -84,7 +84,7 @@ function kelvinToCelsius(kelvin) {
 function getBackground(latitude, longitude, keyword) {
 	var script = document.createElement('script');
 	var params = latitude + ',' + longitude + ',' + keyword;
-	var url = 'http://localhost:8080/flickr/' + params;
+	var url = 'http://localhost:8080/photo/' + params;
 
  	if (window.XMLHttpRequest) {
 		var xmlhttp = new XMLHttpRequest();
