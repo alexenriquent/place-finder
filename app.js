@@ -2,9 +2,8 @@
 var express = require('express');
 var ejs = require('ejs');
 var logger = require('morgan');
-
-// Import a module from 'routes'
 var routes = require('./routes/index');
+var api = require('./routes/api')
 
 // Create an 'express' object
 var app = express();
@@ -19,8 +18,9 @@ app.use(express.static(__dirname + '/public'));
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 
-// Route for 'index.html'
+// Routes
 app.get('/', routes.index);
+app.get('/geolocation', api.geolocation);
 
 // Catch 404 and forward to rror handler
 app.use(function(req, res, next) {

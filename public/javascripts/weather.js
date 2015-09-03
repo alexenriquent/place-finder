@@ -15,11 +15,8 @@ function getGeolocationAndWeather() {
 }
 
 function getGeolocation() {
-	var url = 'http://www.telize.com/geoip';
-	var position = {
-		latitude: 0,
-		longitude: 0
-	};
+	var url = 'http://localhost:8080/geolocation';
+	var position = {latitude: 0, longitude: 0};
 
 	if (window.XMLHttpRequest) {
 		var xmlhttp = new XMLHttpRequest();
