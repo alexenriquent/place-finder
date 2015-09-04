@@ -1,9 +1,13 @@
+/**
+ * @file HTTP requests to external servers (RESTful API calls)
+ */
+
 /** Module dependencies */
 var request = require('request');
 
 /**
  * RESTful API calls
- * @module api
+ * @module API
  */
 module.exports = {
 
@@ -53,7 +57,7 @@ module.exports = {
 		var url = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
                 + "&api_key=" + key + "&lat=" + position.latitude + "&lon=" 
                 + position.longitude + "&accuracy=1&tags=" + keyword 
-                + ",bw&sort=relevance&extras=url_l&format=json";
+                + ",white&sort=relevance&extras=url_l&format=json";
 
         res.send(url);
 	},
@@ -85,8 +89,9 @@ module.exports = {
 		var param = req.params.id;
 		var id = 'IWLYPFQCMGW2FHGZFBB4T22JWJPXAYP3ILENFTP0NNDM4JCF';
 		var secret = '5FCOEYO4TNKZYO2FUS5JF4KTHLRMUHIMQCZPBP3ICHKCA1OO';
+		var version = '20150829';
 		var url = 'https://api.foursquare.com/v2/venues/' + param + '?client_id=' 
-			+ id + '&client_secret=' + secret + '&v=20150829';
+				+ id + '&client_secret=' + secret + '&v=' + version;
 
 		request(url, function(error, response, body) {
         	if (error) {
