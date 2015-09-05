@@ -103,5 +103,27 @@ module.exports = {
 			var info = JSON.parse(body);
 			res.send(info);
         });
+	},
+
+	/** HTTP request to the Google Places API */
+	place: function(req, res) {
+		var params = req.params.location.split(',');
+		var position = {latitude: params[0], longitude: params[1]};
+		var name = params[2];
+		var key = 'AIzaSyBE0F5GdLcE3651WbPXlUhuKINvpwij5ZQ';
+		var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' 
+				+ position.latitude + ',' + position.longitude + '&radius=200&name=' 
+				+ name + '&key=' + key;
+
+		request(url, function(error, response, body) {
+        	if (error) {
+				return console.log('Error: ', error);
+			}
+			if (response.statusCode !== 200) {
+				return console.log('Invalid status code: ', response.statusCode);
+			}
+			var info = JSON.parse(body);
+			res.send(info);
+        });
 	}
 };

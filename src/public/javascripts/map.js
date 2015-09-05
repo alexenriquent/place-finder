@@ -152,7 +152,7 @@ window.onload = function() {
 				'meal_delivery', 'meal_takeaway', 'bakery', 'liquor_store',
 				'department_store', 'shopping_mall', 'electronics_store', 
 				'book_store', 'clothing_store', 'shoe store', 'grocery_or_supermarket', 
-				'convinience_store', 'library', 'art_gallery', 'museum', 'casino',
+				'convenience_store', 'library', 'art_gallery', 'museum', 'casino',
 				'movie_theater', 'bowling_alley', 'gym', 'park',
 				'atm', 'bank', 'post_office', 'police', 'health',
 				'hospital', 'doctor', 'dentist'];
@@ -180,15 +180,28 @@ function getPlaceInfo(latitude, longitude, name) {
 			var response = JSON.parse(xmlhttp.responseText);
 			var placeName = name.split(' ')[0].toLowerCase();
 			var placeID;
+			var onFoursquare = false;
 
 			for (var i = 0; i < response.response.venues.length; i++) {
-				if (response.response.venues[i].name.split(' ')[0].toLowerCase() == placeName) {
+				if (response.response.venues[i].name.split(' ')[0].toLowerCase()
+					== 'the' && placeName == 'the') {
+					if (response.response.venues[i].name.split(' ')[1].toLowerCase()
+						== name.split(' ')[1].toLowerCase()) {
+						placeID = response.response.venues[i].id;
+						getPlaceData(placeID);
+						onFoursquare = true;
+						break;
+					}
+				} else if (response.response.venues[i].name.split(' ')[0].toLowerCase() 
+					== placeName && placeName != 'the') {
 					placeID = response.response.venues[i].id;
 					getPlaceData(placeID);
+					onFoursquare = true;
 					break;
-				} else {
-					infowindow.setContent('<strong>' + name + '</strong>');
-				}
+				} 
+			}
+			if (!onFoursquare) {
+				getPlace(latitude, longitude, name);
 			}
 		}, false);
 
@@ -230,41 +243,46 @@ function getPlaceData(placeID) {
 
 			var details = {
 				name: response.response.venue.name,
-				rating: response.response.venue.rating,
 				address: response.response.venue.location.formattedAddress[0],
 				phoneNumber: response.response.venue.contact.phone,
+				rating: response.response.venue.rating,
 				website: response.response.venue.url,
 				foursquare: response.response.venue.canonicalUrl,
-				tips: [
-					{
-						tip: response.response.venue.tips.groups[0].items[0].text,
-						firstName: response.response.venue.tips.groups[0].items[0].user.firstName,
-						lastName: response.response.venue.tips.groups[0].items[0].user.lastName
-					},
-					{
+			};
+
+			var tips = [];
+			if (response.response.venue.tips.groups[0].items.length > 0) {
+				tips[0] = {
+					tip: response.response.venue.tips.groups[0].items[0].text,
+					firstName: response.response.venue.tips.groups[0].items[0].user.firstName,
+					lastName: response.response.venue.tips.groups[0].items[0].user.lastName
+					
+				};
+				if (response.response.venue.tips.groups[0].items.length > 1) {
+					tips[1] = {
 						tip: response.response.venue.tips.groups[0].items[1].text,
 						firstName: response.response.venue.tips.groups[0].items[1].user.firstName,
 						lastName: response.response.venue.tips.groups[0].items[1].user.lastName
-					}
-				]
-			};
+					};
+				}
+			}
 
 			if (dataAvailable(photo)) {
 				content += '<br/><img src="' + photo 
 						+ '" class="img-responsive"' 
 						+ ' style="margin-left:21px;">';
-			}
+			} 
 			if (dataAvailable(details.name)) {
 				content += '<br/><strong>'+ details.name + '</strong>';
 			}
-			if (dataAvailable(details.rating)) {
-				content += '<br/>Rating: ' + details.rating + '/10';
-			}
 			if (dataAvailable(details.address)) {
-				content += '<br/>Address: ' + details.address;
+				content += '<br/>' + details.address;
 			}
 			if (dataAvailable(details.phoneNumber)) {
 				content += '<br/>Tel: ' + details.phoneNumber;
+			}
+			if (dataAvailable(details.rating)) {
+				content += '<br/>Rating: ' + details.rating + '/10';
 			}
 			if (dataAvailable(details.website)) {
 				content += '<br/>Website: <a href="' 
@@ -274,28 +292,30 @@ function getPlaceData(placeID) {
 				content += '<br/>Foursquare: <a href="' 
 						+ details.foursquare + '">View on Foursquare</a>';
 			}
-			if (dataAvailable(details.tips[0])) {
+			if (dataAvailable(tips[0])) {
 				content += '<br/><br/><strong>Tips and Reviews</strong>'
-						+ '<br>"' + details.tips[0].tip + '"';
-				if (dataAvailable(details.tips[0].firstName)) {
-					content += ' — ' + details.tips[0].firstName;
-					if (dataAvailable(details.tips[0].lastName)) {
-						content += ' ' + details.tips[0].lastName;
+						+ '<br>"' + tips[0].tip + '"';
+				if (dataAvailable(tips[0].firstName)) {
+					content += ' — ' + tips[0].firstName;
+					if (dataAvailable(tips[0].lastName)) {
+						content += ' ' + tips[0].lastName;
 					}
 				} 
 			}
-			if (dataAvailable(details.tips[1])) {
-				content += '<br><br/>"' + details.tips[1].tip + '"';
-				if (dataAvailable(details.tips[1].firstName)) {
-					content += ' — ' + details.tips[1].firstName;
-					if (dataAvailable(details.tips[1].lastName)) {
-						content += ' ' + details.tips[1].lastName;
+			if (dataAvailable(tips[1])) {
+				content += '<br><br/>"' + tips[1].tip + '"';
+				if (dataAvailable(tips[1].firstName)) {
+					content += ' — ' + tips[1].firstName;
+					if (dataAvailable(tips[1].lastName)) {
+						content += ' ' + tips[1].lastName;
 					}
 				} 
 			}
-			if (dataAvailable(details.foursquare)) {
-				content += '<br/><br/>View more reviews on <a href="' 
-						+ details.foursquare + '">Foursquare</a>';
+			if (response.response.venue.tips.groups[0].items.length > 0) {
+				if (dataAvailable(details.foursquare)) {
+					content += '<br/><br/>View more reviews on <a href="' 
+							+ details.foursquare + '">Foursquare</a>';
+				}
 			}
 
 			infowindow.setContent(content);
@@ -313,10 +333,61 @@ function getPlaceData(placeID) {
 }
 
 /**
+ * Get place information specified by geographic coordinates and place name
+ * @param {Number} latitude - Geographic cooridinate (latitude)
+ * @param {Number} longitude - Geographic cooridinate (longitude)
+ * @param {String} name - Place name 
+ */
+function getPlace(latitude, longitude, name) {
+	var params = latitude + ',' + longitude + ',' + name.split(' ')[0];
+	var url = '/place/' + params;
+
+	if (window.XMLHttpRequest) {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.addEventListener('load', function() {
+			var response = JSON.parse(xmlhttp.responseText);
+			var content = '';
+
+			if (response.results.length > 0) {
+				var details = {
+					name: response.results[0].name,
+					vicinity: response.results[0].vicinity,
+					rating: response.results[0].rating
+				}; 
+
+				if (dataAvailable(details.name)) {
+				content += '<strong>' + details.name + '</strong>';
+				}
+				if (dataAvailable(details.vicinity)) {
+				content += '<br/>' + details.vicinity;
+				}
+				if (dataAvailable(details.rating)) {
+				content += '<br/>Rating: ' + details.rating + '/5';
+				}
+			} else {
+				content += '<strong>' + name + '</strong>';
+			}
+
+			infowindow.setContent(content);
+		}, false);
+
+		xmlhttp.addEventListener('error', function(err) {
+			alert('Unable to complete the request');
+		}, false);
+
+		xmlhttp.open('GET', url, true);
+		xmlhttp.send();
+	} else {
+		alert('Unable to fetch data');
+	}
+}
+
+/**
  * Check if specified data is not null
  */
 function dataAvailable(data) {
-	if (data != null && data != 'undefined') {
+	if (data != null && data != 'undefined' &&
+		data != NaN) {
 		return true;
 	}
 	return false;
