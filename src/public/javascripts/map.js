@@ -316,7 +316,7 @@ function getPlaceData(placeID) {
  * Check if specified data is not null
  */
 function dataAvailable(data) {
-	if (data != null) {
+	if (data != null && data != 'undefined') {
 		return true;
 	}
 	return false;
