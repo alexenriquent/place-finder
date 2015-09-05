@@ -26,7 +26,7 @@ function getGeolocationAndWeather() {
  * Get geolocation data from the server
  */
 function getGeolocation() {
-	var url = 'http://localhost:8080/geolocation';
+	var url = '/geolocation';
 	var position = {latitude: 0, longitude: 0};
 
 	if (window.XMLHttpRequest) {
@@ -59,7 +59,7 @@ function getGeolocation() {
  */
 function getWeather(latitude, longitude) {
  	var param = latitude + ',' + longitude;
- 	var url = 'http://localhost:8080/weather/' + param;
+ 	var url = '/weather/' + param;
 
     if (window.XMLHttpRequest) {
     	var xmlhttp = new XMLHttpRequest();
@@ -111,7 +111,7 @@ function kelvinToCelsius(kelvin) {
 function getBackground(latitude, longitude, keyword) {
 	var script = document.createElement('script');
 	var params = latitude + ',' + longitude + ',' + keyword;
-	var url = 'http://localhost:8080/photo/' + params;
+	var url = '/photo/' + params;
 
  	if (window.XMLHttpRequest) {
 		var xmlhttp = new XMLHttpRequest();

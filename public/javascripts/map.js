@@ -172,7 +172,7 @@ window.onload = function() {
  */
 function getPlaceInfo(latitude, longitude, name) {
 	var params = latitude + ',' + longitude;
-	var url = 'http://localhost:8080/placeinfo/' + params;
+	var url = '/placeinfo/' + params;
 
 	if (window.XMLHttpRequest) {
 		var xmlhttp = new XMLHttpRequest();
@@ -208,7 +208,7 @@ function getPlaceInfo(latitude, longitude, name) {
  * @param {String} placeID - Place ID (From the Foursquare's database) 
  */
 function getPlaceData(placeID) {
-	var url = 'http://localhost:8080/placedata/' + placeID;
+	var url = '/placedata/' + placeID;
 
 	if (window.XMLHttpRequest) {
 		var xmlhttp = new XMLHttpRequest();
