@@ -11,4 +11,12 @@ describe('Static Routes', function() {
 				.expect(200, done);
 		});
 	});
+
+	describe('GET /test', function() {
+		it('GET /test should return 404', function(done) {
+			request(app)
+				.get('/test')
+				.expect(404, done);
+		});
+	});
 });
