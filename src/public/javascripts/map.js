@@ -148,6 +148,7 @@ function placesSearch() {
  */
 window.onload = function() {
 	var numButtons = 32;
+	/** Types specified by Google Places Web Service */
 	var types = ['restaurant', 'cafe', 'bar', 'night_club', 
 				'meal_delivery', 'meal_takeaway', 'bakery', 'liquor_store',
 				'department_store', 'shopping_mall', 'electronics_store', 
