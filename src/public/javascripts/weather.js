@@ -141,13 +141,16 @@ function jsonFlickrApi(response) {
     	var photo;
     	if (response.photos.photo.length > 1) {
     		photo = response.photos.photo[1];
-    		document.getElementById('header').style.backgroundImage = "url('" + photo.url_l + "')";
+    		document.getElementById('header').style.backgroundImage = 
+    			"linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('" + photo.url_l + "')";
     	} else {
     		photo = response.photos.photo[0];
-    		document.getElementById('header').style.backgroundImage = "url('" + photo.url_l + "')";
+    		document.getElementById('header').style.backgroundImage = 
+    			"linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('" + photo.url_l + "')";
     	}
     } else {
-        document.getElementById('header').style.backgroundImage = "url('/images/default-header-1.jpg')"
+        document.getElementById('header').style.backgroundImage = 
+        	"linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/images/default-header-1.jpg')"
     }
 }
 
