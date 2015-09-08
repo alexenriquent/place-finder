@@ -57,7 +57,7 @@ module.exports = {
 		var url = "https://api.flickr.com/services/rest/?method=flickr.photos.search" 
                 + "&api_key=" + key + "&lat=" + position.latitude + "&lon=" 
                 + position.longitude + "&accuracy=1&tags=" + keyword 
-                + ",bw&sort=relevance&extras=url_l&format=json";
+                + ",night&sort=relevance&extras=url_l&format=json";
 
         res.send(url);
 	},

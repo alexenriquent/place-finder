@@ -5,7 +5,7 @@
 	<meta name='author' content='Thanat Chokwijitkul'/>
 	<meta name='description' content='The API mashup provides users with visual and interactive way of exploring nearby places.'/>
 	<meta name='keywords' content='API, mashup'/>
-	<title>API Mashup</title>
+	<title>Place Finder</title>
 	<!-- CSS Stylesheets -->
 	<link rel='stylesheet' type='text/css' href='/stylesheets/bootstrap.min.css'/>
 	<link rel='stylesheet' type='text/css' href='/stylesheets/font-awesome.min.css'/>
@@ -22,7 +22,7 @@
 					<span class='glyphicon glyphicon-th-list'></span>
 				</button>
 				<!-- Application name -->
-				<a id='app-name' class='navbar-brand' href='#header'>API Mashup</a>
+				<a id='app-name' class='navbar-brand' href='#header'>Place Finder</a>
 			</div> <!-- navbar-header -->
 			<div class='collapse navbar-collapse' id='navbar-collapse-main'>
 				<!-- Navigation menu -->
@@ -39,14 +39,16 @@
 	<!-- Header -->
 	<div id='header' class='header'>
 		<div class='centre-alignment'>
-			<h1 id='city-name'>API Mashup</h1>
-			<p>
-				<span id='temperature' href='#'>Mashup</span> 
-				<span id='weather-description'>by Alex</span><br/>
-				<span id='min-temp'></span>
-				<span id='max-temp'></span>
-			</p>
-		</div>
+			<div id='header-text'>
+				<h1 id='city-name'>Place Finder</h1>
+				<p>
+					<span id='temperature' href='#'>Mashup</span> 
+					<span id='weather-description'>by Alex</span><br/>
+					<span id='min-temp'></span>
+					<span id='max-temp'></span>
+				</p>
+			</div> <!-- header-text -->
+		</div> <!-- centre-alignment -->
 	</div> <!-- Header -->
 
 	<!-- Application description - About -->
@@ -54,8 +56,8 @@
 		<div class='container'>
 			<div class='row'>
 				<div id='about-content' class='text-center'>
-					<h3>About This API Mashup</h3>
-					<p>This API mashup provides you with visual and interactive way of exploring nearby places. The application detects locations of the web visitors and displays some basic information, including an interactive map and weather information in the area. You can discover the nearby businesses and services using some provided buttons labelled with place types/categories specified by the Google Places API. However, other place types/categories still can be searched via a search box.
+					<h3>About Place Finder</h3>
+					<p>Place Finder is an API mashup that provides you with visual and interactive way of exploring nearby places. The system detects where you are and displays some basic information, including an interactive map and weather information in your area. You can discover the nearby businesses and services using the provided buttons labelled with place types/categories specified by the Google Places API. However, other place types/categories still can be searched via a search box.
 					</p>
 				</div> <!-- about-content -->
 			</div> <!-- row -->
