@@ -1,0 +1,95 @@
+PROPOSAL (Updated)
+
+Overall Mashup Purpose and Description
+
+This API mashup provides users with visual and interactive way of exploring nearby places. The application detects locations of the web visitors and displays some basic information, including an interactive map and weather information in the area. Users can discover the nearby businesses and services using some provided buttons labelled with place types/categories specified by Google Places. However, other place types/categories still can be searched via a search box.
+
+Use Cases
+
+Use case 1: As a user, I would like the system to be able to detect my location and display the current weather information, such as current temperature and weather description so that I can decide whether I should go out or not.
+Use case 2: As a user, I would like the system to be able to detect my location and display an interactive map so that I can explore the area using that map.
+Use case 3: As a user, I would like the system to provide buttons labelled with place types/categories, such as restaurant, cafe, bar .etc, so that I can find commonly searched businesses and services around my area easily without typing.
+Use case 4: As a user, I would like to be able to search on the map so that I can find other nearby places using other keywords apart from the provided categories.
+Use case 5: As a user, I would like the system to display details of each place, such as address, contact number, official website, rating or reviews, so that it can help me decide whether I want to go to that place. 
+
+Note: The term 'user' refers to both tourists and local users within a specified area.
+
+Services and Data APIs
+
+Telize
+The Telize API allows users to request a website visitor's geolocation information. It uses an IP address to obtain location data using REST calls, then return the requested geolocation data in JSON format.
+
+Open Weather Map
+The Open Weather Map API allows users to retrieve the current weather information with various options of parameters, such as city name or geographic coordinates. It uses REST calls and return data in JSON format.
+
+Flickr
+The Flickr API allows users to retrieve photos from the Flickr photo sharing service. It supports REST and responds in many formats, including JSON.
+
+Google Maps
+The Google Maps API is commonly used to embed Google Maps onto web applications using JavaScript interface.
+ 
+Google Places
+The Google Places API is a web service that provides information about nearby places within a specified area. In this mashup, Google Places Web Service will be used on the server side to obtain places information, and Google Places API JavaScript library will also be used with Google Maps on the client side.
+
+Foursquare
+The Foursquare API, currently in V2, grants access to the company's database of location as well as information on venue check in's. The APIs are Restful and support XML, JSON and JSONP. However, the Foursquare's database does not contains data of all places. Therefore, if a specified piece of data cannot be obtained from Foursquare, it will be obtained from the Google Places API instead.
+
+List of Services for Each User Story
+
+Use case 1: Telize API, Open Weather Map API and Flickr API (background image using geographic coordinate and a short weather description of a city as a keyword)
+The system will detect where a user is by sending a request to Telize, then obtain geolocation data (geographic coordinates). The piece of data obtained from Telize will be used with the Open Weather Map API to get current weather information, and the Flickr API to get a current location related photo (to display on the presentation side).
+
+Use case 2: Google Maps API
+The Google Maps API will be used to embed the map onto the webpage and display a user's current location.
+
+Use case 3: Google Map API and Google Places API 
+When a button is clicked, a specified category labelled on that button will be sent to the Google Places API to find nearby places, then create a collection of markers on the map.
+
+Use case 4: Google Map API and Google Places API
+The system also provides a search box using the Google Places API JavaScript library.
+
+Use case 5: Google Map API, Google Places API and Foursquare API
+When a marker on the map is clicked, the server will send a request to the Foursquare API to obtain all the details of that location pointed by the marker, then display them inside the infowindow. If the system cannot get data from Foursquare, it will send another request to the Google Places Web Service instead.
+
+Sever Side
+
+Node.js
+Node.js will be used as a web server because it is event-based rather than thread-based like Apache, and I/O operations in Node.js are asynchronous, which means it can handle incoming requests while another I/O operation is taking place.
+
+Express.js
+Express.js will be used as a web development framework for Node.js.
+
+API Calls
+All the HTTP requests to external servers will be sent from the local server using the 'request' module.
+
+Client Side
+
+JavaScript
+JavaScript will be used as a client side scripting language.
+
+On the presentation side, HTML will be used as a markup language and Twitter Bootstrap will be used as a standard web page layout.
+
+The application will be deployed via a Docker container, sitting on top of Ubuntu VM on Azure.
+
+TECHNICAL ISSUES
+
+There is no any technical issues at the moment.
+The issues related to Docker and how to deploy an application on top of the Azure Linux VM have been sorted.
+(Thanks to Soeren for the DockerHub tip, and Malcolm for port configuration)
+
+BASIC USER GUILD
+
+When a user accesses the website, the system will detect where the user is, display the name of the city and also provide basic weather information, including current temperature, maximum and minimum temperatures (all in Celsius).
+
+If scrolling down to the 'Map' section, the map should display the current location (the area where the user is).
+
+For the 'Places' section, several buttons labelled with place types/categories can be used to find nearby businesses or services. After clicking on one button (and the webpage is fully loaded), the webpage will automatically scroll down to the 'Map' section and display all the nearby places according to the specified type/category.
+
+Each marker contains specific information of a particular place. Clicking on a marker will display details, such as address, contact number, official website, rating or reviews. 
+
+Note: If the system cannot get any information for a particular place, it means no data about that place can be obtained from the Google Places and Foursquare's database. However, it will display the name of that place by default.
+
+TEST PLAN
+
+Unit tests will be implemented using the Mocha, and other modules, including Should and SuperTest modules to test all the routes, user-defined modules (API requests) and other functionalities.
+
