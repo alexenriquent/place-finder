@@ -1,8 +1,8 @@
 # Dockerfile to build API mashup
 # Based on Ubuntu
 
-# Set the base image to Ubuntu 14.04
-FROM ubuntu:14.04
+# Set the base image to Ubuntu 15.04
+FROM ubuntu:15.04
 
 # File author / maintainer
 MAINTAINER Thanat Chokwijitkul
