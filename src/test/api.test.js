@@ -1,3 +1,4 @@
+/** Module dependencies */
 var app = require('../app');
 var http = require('http');
 var request = require('supertest');
