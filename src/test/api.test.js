@@ -133,7 +133,7 @@ describe('API Routes', function() {
 				});
 		});
 
-		it('should contain weather infomation', function(done) {
+		it('should contain weather information', function(done) {
 			request(app)
 				.get('/weather/' + location.latitude + ',' + location.longitude)
 				.expect('Content-Type', /json/)

@@ -103,6 +103,7 @@ function clearMarkers() {
 function buttonSearch(button, type) {
 	button.onclick = function() {
 		searchNearby(type);
+		map.setCenter(pos);
 	};
 }
 
