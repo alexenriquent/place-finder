@@ -1,9 +1,14 @@
+/**
+ * @file Unit test cases for the API routes
+ */
+
 /** Module dependencies */
 var app = require('../app');
 var http = require('http');
 var request = require('supertest');
 var should = require('should');
 
+/* API routes text cases */
 describe('API Routes', function() {
 
 	var location = {
@@ -14,6 +19,7 @@ describe('API Routes', function() {
 	var name;
 	var placeID;
 
+	/** HTTP request to the Telize API */
 	describe('GET /geolocation', function() {
 		it('should return 200', function(done) {
 			request(app)
@@ -84,7 +90,8 @@ describe('API Routes', function() {
 				});
 		});
 	});
-
+	
+	/** HTTP request to the Open Weather Map API */
 	describe('GET /weather/:location', function() {
 		it('should return 200', function(done) {
 			request(app)
@@ -144,6 +151,7 @@ describe('API Routes', function() {
 		});
 	});
 
+	/** HTTP request to the Flickr API */
 	describe('GET /photo/:location', function() {
 		keyword = 'brisbane';
 
@@ -175,6 +183,7 @@ describe('API Routes', function() {
 		});
 	});
 
+	/** HTTP request to the Foursquare API */
 	describe('GET /placeinfo/:location', function() {
 		it('should return 200', function(done) {
 			request(app)
@@ -218,6 +227,7 @@ describe('API Routes', function() {
 		});
 	});
 
+	/** HTTP request to the Foursquare API */
 	describe('GET /placedata/:id', function() {
 		placeID = '4b05873bf964a520848622e3';
 		it('should return 200', function(done) {
@@ -263,6 +273,7 @@ describe('API Routes', function() {
 		});
 	});
 
+	/** HTTP request to the Google Places API */
 	describe('GET /place/:location', function() {
 		name = 'brisbane';
 

@@ -1,11 +1,17 @@
+/**
+ * @file Unit test cases for the static routes
+ */
+
 /** Module dependencies */
 var app = require('../app');
 var http = require('http');
 var request = require('supertest');
 var should = require('should');
 
+/* Static routes text cases */
 describe('Static Routes', function() {
 
+	/* Main route */
 	describe('GET /', function() {
 		it('should return 200', function(done) {
 			request(app)
@@ -33,6 +39,7 @@ describe('Static Routes', function() {
 		});
 	});
 
+	/* 'Not found' route */
 	describe('GET /test', function() {
 		it('should return 404', function(done) {
 			request(app)
