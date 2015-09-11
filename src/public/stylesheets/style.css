@@ -209,16 +209,26 @@ h1, h2, h3, h4, h5, h6 {
 	margin-left: 50px;
 }
 
-#social-media {
-	height: 21px;
+#footer-space {
+	height: 27px;
+}
+
+#api-endpoints {
+	font-size: 12px;
+}
+
+#api-endpoints span {
+	font-size: 12px;
+	color: #FFFFFF;
 }
 
 #api-endpoints a {
+	font-size: 12px;
 	color: #FFFFFF;
 }
 
 footer {
-	height: 65px;
+	height: 70px;
 	color: #BDBDBD;
 	background-color: #000000;
 }
