@@ -11,22 +11,6 @@ var request = require('request');
  */
 module.exports = {
 
-	/** HTTP request to the Telize API */
-	geolocation: function(req, res) {
-		var url = 'http://www.telize.com/geoip';
-
-		request(url, function(error, response, body) {
-			if (error) {
-				return console.log('Error: ', error);
-			}
-			if (response.statusCode !== 200) {
-				return console.log('Invalid status code: ', response.statusCode);
-			}
-			var info = JSON.parse(body);
-			res.send(info);
-		});
-	},
-
 	/** HTTP request to the Open Weather Map API */
 	weather: function(req, res) {
 		var params = req.params.location.split(',');

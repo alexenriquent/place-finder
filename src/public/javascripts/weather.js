@@ -26,7 +26,7 @@ function getGeolocationAndWeather() {
  * Get geolocation data from the server
  */
 function getGeolocation() {
-	var url = '/geolocation';
+	var url = 'http://www.telize.com/geoip';
 	var position = {latitude: 0, longitude: 0};
 
 	if (window.XMLHttpRequest) {

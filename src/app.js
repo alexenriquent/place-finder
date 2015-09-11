@@ -26,7 +26,6 @@ app.set('view engine', 'html');
 app.get('/', routes.index);
 
 /** API routes */
-app.get('/geolocation', api.geolocation);
 app.get('/weather/:location', api.weather);
 app.get('/photo/:location', api.photo);
 app.get('/placeinfo/:location', api.placeInfo);
