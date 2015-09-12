@@ -20,7 +20,7 @@ COPY ./src /src
 RUN cd /src; npm install
 
 # Expose port
-EXPOSE 8080
+EXPOSE 80
 
 # Set the default command to execute when creating a new container
 CMD ["nodejs", "/src/server.js"]
