@@ -154,6 +154,10 @@ function jsonFlickrApi(response) {
     }
 }
 
+/**
+ * Call the getGeolocationAndWeather() function
+ * when the page is fully loaded
+ */
 $(document).ready(function() {
 	getGeolocationAndWeather();
 });
