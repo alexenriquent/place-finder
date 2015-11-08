@@ -23,10 +23,10 @@ function getGeolocationAndWeather() {
 }
 
 /**
- * Get geolocation data from the server
+ * Get geolocation data from the IP-API server
  */
 function getGeolocation() {
-	var url = 'http://www.telize.com/geoip';
+	var url = 'http://ip-api.com/json';
 	var position = {latitude: 0, longitude: 0};
 
 	if (window.XMLHttpRequest) {
@@ -34,8 +34,8 @@ function getGeolocation() {
 		xmlhttp.addEventListener('load', function() {
 			var response = JSON.parse(xmlhttp.responseText);
 
-			position.latitude = response.latitude;
-			position.longitude = response.longitude;
+			position.latitude = response.lat;
+			position.longitude = response.lon;
 			currentWeatherData.city.innerHTML = response.city;
 
 			getWeather(position.latitude, position.longitude);
@@ -48,7 +48,7 @@ function getGeolocation() {
 		xmlhttp.open('GET', url, true);
 		xmlhttp.send();
 	} else {
-		alert('Unable to fetch the geolocation data from Telize');
+		alert('Unable to fetch the geolocation data from IP-API');
 	}
 }
 
